@@ -1,0 +1,15 @@
+plugins
+*.jar
+world*
+logs
+*.json
+lang
+cache
+**.env
+**.rcon**
+eula.txt
+permissions.yml
+help.yml
+bukkit.yml
+commands.yml
+server.properties

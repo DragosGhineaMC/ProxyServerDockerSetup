@@ -1,0 +1,6 @@
+modules
+modules.yml
+locations.yml
+proxy.log.**
+config
+paper.yml

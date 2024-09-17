@@ -1,0 +1,72 @@
+services:
+  proxy:
+    image: itzg/bungeecord
+    container_name: bungee-proxy
+    ports:
+      - "25565:25577"
+    environment:
+      - TYPE=BUNGEECORD
+    volumes:
+      - ./minecraft-proxy:/server
+    restart: unless-stopped
+    depends_on:
+      - server1
+      - server2
+      - server3
+
+  server1:
+    image: itzg/minecraft-server
+    container_name: legacy-server-1
+    environment:
+      EULA: "TRUE"
+      ONLINE_MODE: "FALSE"
+      TYPE: "PAPER"
+      VERSION: "1.8.8"
+      ENABLE_RCON: "true"
+      RCON_PORT: 25575
+      RCON_PASSWORD: "password1"
+      USE_NATIVE_TRANSPORT: "false"
+      SERVER_PORT: 25566
+    ports:
+      - "25566:25566"
+    volumes:
+      - ./minecraft-server-1:/data
+    restart: unless-stopped
+
+  server2:
+    image: itzg/minecraft-server
+    container_name: legacy-server-2
+    environment:
+      EULA: "TRUE"
+      ONLINE_MODE: "FALSE"
+      TYPE: "PAPER"
+      VERSION: "1.8.8"
+      ENABLE_RCON: "true"
+      RCON_PORT: 25576
+      RCON_PASSWORD: "password2"
+      USE_NATIVE_TRANSPORT: "false"
+      SERVER_PORT: 25567
+    ports:
+      - "25567:25567"
+    volumes:
+      - ./minecraft-server-2:/data 
+    restart: unless-stopped
+
+  server3:
+    image: itzg/minecraft-server
+    container_name: legacy-server-3
+    environment:
+      EULA: "TRUE"
+      ONLINE_MODE: "FALSE"
+      TYPE: "PAPER"
+      VERSION: "1.8.8"
+      ENABLE_RCON: "true"
+      RCON_PORT: 25577
+      RCON_PASSWORD: "password3"
+      USE_NATIVE_TRANSPORT: "false"
+      SERVER_PORT: 25568
+    ports:
+      - "25568:25568"
+    volumes:
+      - ./minecraft-server-3:/data
+    restart: unless-stopped
